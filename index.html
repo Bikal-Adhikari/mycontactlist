@@ -27,13 +27,19 @@
           <div class="row g-2">
             <div class="col-md">
               <input
+                id="search"
                 type="text"
                 class="form-control"
                 placeholder="Search user by name..."
               />
             </div>
             <div class="col-md">
-              <select name="" id="" class="form-control">
+              <select
+                name=""
+                id=""
+                class="form-control"
+                onchange="handleOnGEnderSelect(this)"
+              >
                 <option value="">Show All</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>

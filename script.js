@@ -3,7 +3,7 @@ const api = "https://randomuser.me/api/?results=6";
 
 const userListELm = document.getElementById("list");
 
-const fetchUsers = async () => {
+const fetchUsers = async (url = api) => {
   // const fetchUsers = () => {
   //   const user = fetch(api);
   //   promise method
@@ -22,7 +22,7 @@ const fetchUsers = async () => {
   //async&await
 
   try {
-    const response = await fetch(api);
+    const response = await fetch(url);
     const data = await response.json();
     userList = data.results;
 
@@ -57,3 +57,24 @@ const display = (userList) => {
   userListELm.innerHTML = usrCard;
   document.getElementById("userCount").innerText = userList.length;
 };
+
+const handleOnGEnderSelect = (e) => {
+  const g = e.value;
+  const urlWg = api + "&gender=" + g;
+  fetchUsers(urlWg);
+};
+
+// const handelOnSearch = (e) => {
+//   console.log(e);
+// };
+
+document.getElementById("search").addEventListener("keyup", (e) => {
+  const searchedName = e.target.value.toLowerCase();
+
+  const filteredUser = userList.filter((usr) => {
+    const fullName = (usr.name.first + " " + usr.name.last).toLowerCase();
+    return fullName.includes(searchedName);
+  });
+
+  display(filteredUser);
+});
